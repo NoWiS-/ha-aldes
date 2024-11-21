@@ -1,5 +1,6 @@
 [![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://github.com/hacs/integration)
 
+November 2024: forked https://github.com/NoWiS-/ha-aldes
 October 2024: archived in favor of a local DIY solution: https://github.com/guix77/esphome-aldes-tone
 
 # Aldes integration for Home Assistant
@@ -20,7 +21,7 @@ This integration allows Home Assistant to interact with an Aldes product through
 
 ## Installation
 
-In HACS, add the custom repository https://github.com/guix77/homeassistant-aldes and select the Integration category.
+In HACS, add the custom repository https://github.com/NoWiS-/homeassistant-aldes and select the Integration category.
 
 ## Configuration
 

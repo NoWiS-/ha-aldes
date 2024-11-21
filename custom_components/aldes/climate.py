@@ -57,7 +57,7 @@ class AldesClimateEntity(AldesEntity, ClimateEntity):
         self._attr_device_class = "temperature"
         self._attr_temperature_unit = UnitOfTemperature.CELSIUS
         self._attr_hvac_mode = HVACMode.OFF
-        self._attr_hvac_modes = [HVACMode.OFF, HVACMode.HEAT, HVACMode.COOL]
+        self._attr_hvac_modes = [HVACMode.OFF, HVACMode.HEAT, HVACMode.COOL, HVACMode.AUTO] #should use preset instead of auto.
         self._attr_supported_features = (
             ClimateEntityFeature.TARGET_TEMPERATURE
             | ClimateEntityFeature.TURN_OFF
@@ -65,7 +65,7 @@ class AldesClimateEntity(AldesEntity, ClimateEntity):
         )
         self._enable_turn_on_off_backwards_compatibility = False
         self._attr_target_temperature_step = 1
-        self._attr_hvac_action = "Unknown"
+        self._attr_hvac_action = None 
 
     @property
     def device_info(self):
@@ -153,13 +153,15 @@ class AldesClimateEntity(AldesEntity, ClimateEntity):
 
     async def async_set_hvac_mode(self, hvac_mode: HVACMode) -> None:
         """Set new HVAC mode."""
-        if hvac_mode in [HVACMode.OFF, HVACMode.HEAT, HVACMode.COOL]:
+        if hvac_mode in self._attr_hvac_modes:
             if hvac_mode == HVACMode.OFF:
                 mode = "A"
             elif hvac_mode == HVACMode.HEAT:
                 mode = "B"
             elif hvac_mode == HVACMode.COOL:
                 mode = "F"
+            elif hvac_mode == HVACMode.AUTO: # use Auto to set Heating Prog A mode.
+                mode = "D"
             await self.coordinator.api.change_mode(
                 self.modem,
                 mode

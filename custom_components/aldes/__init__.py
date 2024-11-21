@@ -2,7 +2,7 @@
 Custom integration to integrate Aldes with Home Assistant.
 
 For more details about this integration, please refer to
-https://github.com/guix77/homeassistant-aldes
+https://github.com/NoWiS-/homeassistant-aldes
 """
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
