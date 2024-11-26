@@ -14,7 +14,6 @@ PLATFORMS: list[Platform] = [Platform.BINARY_SENSOR, Platform.SENSOR, Platform.C
 
 FRIENDLY_NAMES = {"TONE_AIR": "T.One® AIR", "TONE_AQUA_AIR": "T.One® AquaAIR"}
 
-
 class ALDESMode(StrEnum):
     OFF = "A"
     HEAT_COMFORT = "B"

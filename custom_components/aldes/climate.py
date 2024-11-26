@@ -191,7 +191,7 @@ class AldesClimateEntity(AldesEntity, ClimateEntity):
             target_temperature += TEMPERATURE_REDUCE_ECO
 
         await self.coordinator.api.set_target_temperature(
-            self.modem, self.thermostat_id, self._thermostat_name, target_temperature
+            self.modem, self.thermostat_id, self.name(), target_temperature
         )
         self._attr_target_temperature = kwargs.get(ATTR_TEMPERATURE)
 
@@ -220,3 +220,9 @@ class AldesClimateEntity(AldesEntity, ClimateEntity):
         mode = mode_map.get(preset_mode)
         if mode:
             await self.coordinator.api.change_mode(self.modem, mode.value, 0)
+
+    async def async_turn_on(self) -> None:
+        await self.async_set_hvac_mode(HVACMode.AUTO)
+
+    async def async_turn_off(self) -> None:
+        await self.async_set_hvac_mode(HVACMode.OFF)
