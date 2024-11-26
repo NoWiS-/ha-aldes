@@ -191,7 +191,7 @@ class AldesClimateEntity(AldesEntity, ClimateEntity):
             target_temperature += TEMPERATURE_REDUCE_ECO
 
         await self.coordinator.api.set_target_temperature(
-            self.modem, self.thermostat_id, self.name(), target_temperature
+            self.modem, self.thermostat_id, self.name, target_temperature
         )
         self._attr_target_temperature = kwargs.get(ATTR_TEMPERATURE)
 
